@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="superBowlApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Super Bowl Rushing Leaders</title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.teal-red.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body ng-controller="mainCtrl as ctrl" class="mdl-color--grey-300">
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col text-align-center">
+            <h2>Rushing Leaders</h2>
+            <table class="mdl-data-table mdl-js-data-table horizontal-center">
+                <thead>
+                    <tr class="mdl-color--primary primary-border">
+                        <th class="mdl-data-table__cell--non-numeric mdl-color-text--primary-contrast" ng-class="{'mdl-color-text--accent': ctrl.orderBy === 'player'}" ng-click="ctrl.onPlayerClick()">Player</th>
+                        <th class="mdl-data-table__cell--non-numeric mdl-color-text--primary-contrast" ng-class="{'mdl-color-text--accent': ctrl.orderBy === 'team'}" ng-click="ctrl.onTeamClick()">Team</th>
+                        <th class="mdl-color-text--primary-contrast" ng-class="{'mdl-color-text--accent': ctrl.orderBy === '-yards'}" ng-click="ctrl.onYardsClick()">Total Yards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="player in ctrl.rushingLeaders | orderBy: ctrl.orderBy | limitTo: ctrl.limit">
+                        <td class="mdl-data-table__cell--non-numeric">{{::player.player}}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{::player.team}}</td>
+                        <td class="">{{::player.yards}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+
+    <script src="js/bundle.js"></script>
+</body>
+</html>
